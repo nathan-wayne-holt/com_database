@@ -18,9 +18,5 @@ Route::get('/', function () {
     return 'City of Mist searchable database project';
 });
 
-Route::get('/danger/view/{id}', function ($id) {
-	return 'viewing danger id ' . $id;
-});
-
-Route::get('danger/create', [DangerController::class, 'create']);
-Route::post('danger/create', [DangerController::class, 'store']);
+// all CRUD routes for dangers
+Route::resource('dangers', DangerController::class);
