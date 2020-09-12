@@ -84,6 +84,9 @@
             body {
                 font-family: 'Nunito';
             }
+            .error {
+                color: red;
+            }
         </style>
 
         <!-- Pure CSS for forms -->
@@ -91,23 +94,48 @@
     </head>
     <body class="antialiased">
         Danger creation form.
-        <form method="POST" action="/create" class="pure-form pure-form-aligned">
+        <form method="POST" action="/danger/create" class="pure-form pure-form-aligned">
             @csrf
 
             <fieldset>
                 <div class="pure-control-group">
                     <label for="name">Danger name</label>
                     <input type="text" name="name" class="pure-input-1-2" />
+                    @error('name')
+                        <div class="error">
+                            Missing danger name.
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="pure-control-group">
                     <label for="rating">Danger rating</label>
                     <input type="number" min="1" max="5" name="rating" />
+                    @error('rating')
+                        <div class="error">
+                            Missing danger rating.
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="description">Danger description (optional)</label>
+                    <textarea name="description" class="pure-input-1-2"></textarea>
+                    @error('description')
+                        <div class="error">
+                            Problem with description (specify error message here).
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="pure-control-group">
                     <label>Creator (your) name</label>
                     <input type="text" name="creator" class="pure-input-1-2" />
+                    @error('creator')
+                        <div class="error">
+                            Missing your name for credit!
+                        </div>
+                    @enderror
                 </div>
 
                 <div id="spectrums">
@@ -116,11 +144,21 @@
                     <div id="spectrum-1">
                         <div class="pure-control-group">
                             <label for="spectrum[1][name]">Name</label>
-                            <input type="text" name="spectrum[1][name]" />
+                            <input type="text" name="spectrum[1][name]" class="pure-input-1-2" />
+                            @error('spectrum.1.name')
+                                <div class="error">
+                                    Missing spectrum name.
+                                </div>
+                            @enderror
                         </div>
                         <div class="pure-control-group">
                             <label for="spectrum[1][threshold]">Threshold</label>
                             <input type="number" name="spectrum[1][threshold]" min="1" max="6" />
+                            @error('spectrum.1.threshold')
+                                <div class="error">
+                                    Missing spectrum threshold.
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -134,7 +172,12 @@
                     <div id="move-1">
                         <div class="pure-control-group">
                             <label for="move[1][name]">Name (optional)</label>
-                            <input type="text" name="move[1][name]" />
+                            <input type="text" name="move[1][name]" class="pure-input-1-2" />
+                            @error('move.1.name')
+                                <div class="error">
+                                    Missing move name.
+                                </div>
+                            @enderror
                         </div>
                         <div class="pure-control-group">
                             <label for="move[1][type]">Move type</label>
@@ -146,7 +189,12 @@
                         </div>
                         <div class="pure-control-group">
                             <label for="move[1][description]">Description</label>
-                            <textarea type="text" name="move[1][description]"></textarea>
+                            <textarea type="text" name="move[1][description]" class="pure-input-1-2"></textarea>
+                            @error('move.1.description')
+                                <div class="error">
+                                    Missing move description.
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>

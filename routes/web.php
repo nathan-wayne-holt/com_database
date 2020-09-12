@@ -23,3 +23,4 @@ Route::get('/danger/view/{id}', function ($id) {
 });
 
 Route::get('danger/create', [DangerController::class, 'create']);
+Route::post('danger/create', [DangerController::class, 'store']);
